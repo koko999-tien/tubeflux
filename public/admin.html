@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin — Tubeflux</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="/">Tube<span>flux</span></a>
+    <nav class="header-links" style="margin-left:auto">
+      <a href="/">View site</a>
+      <a href="#" id="logout-link">Log out</a>
+    </nav>
+  </div>
+</header>
+
+<main class="admin">
+
+  <!-- login -->
+  <section id="login-view" class="panel hidden" style="max-width:420px;margin:60px auto">
+    <h2>Admin login</h2>
+    <form id="login-form">
+      <div class="field">
+        <label>Username</label>
+        <input id="login-user" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input id="login-pass" type="password" autocomplete="current-password" required>
+      </div>
+      <button class="btn primary" type="submit">Sign in</button>
+    </form>
+  </section>
+
+  <!-- dashboard -->
+  <section id="dash-view" class="hidden">
+    <h1>Dashboard</h1>
+    <div class="stats" id="stats"></div>
+
+    <div class="panel">
+      <h2>Upload video</h2>
+      <form id="upload-form">
+        <div class="row">
+          <div class="field">
+            <label>Title</label>
+            <input name="title" placeholder="Leave blank to use the file name">
+          </div>
+          <div class="field">
+            <label>Category</label>
+            <input name="category" list="cat-options" placeholder="e.g. Amateur">
+            <datalist id="cat-options"></datalist>
+          </div>
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea name="description" placeholder="Optional description…"></textarea>
+        </div>
+        <div class="field">
+          <label>Tags (comma separated)</label>
+          <input name="tags" placeholder="brunette, pov, amateur">
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>Video file *</label>
+            <input name="video" type="file" accept="video/*" required>
+          </div>
+          <div class="field">
+            <label>Thumbnail (optional — auto-generated if ffmpeg is available)</label>
+            <input name="thumb" type="file" accept="image/*">
+          </div>
+        </div>
+        <button class="btn primary" type="submit" id="upload-btn">Upload</button>
+        <div class="progress" id="progress"><div class="bar" id="progress-bar"></div></div>
+      </form>
+    </div>
+
+    <div class="panel">
+      <h2>Videos</h2>
+      <table class="table">
+        <thead>
+          <tr><th>Thumb</th><th>Title</th><th>Category</th><th>Views</th><th>Likes</th><th>Status</th><th></th></tr>
+        </thead>
+        <tbody id="video-rows"></tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h2>Categories</h2>
+      <form id="cat-form" style="display:flex;gap:10px;margin-bottom:16px">
+        <input id="cat-name" placeholder="New category name" style="flex:1;background:var(--bg-3);border:1px solid var(--line);border-radius:8px;padding:10px 12px">
+        <button class="btn primary" type="submit">Add</button>
+      </form>
+      <table class="table">
+        <thead><tr><th>Name</th><th>Slug</th><th>Videos</th><th></th></tr></thead>
+        <tbody id="cat-rows"></tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h2>Change password</h2>
+      <form id="pass-form" style="max-width:420px">
+        <div class="field"><label>Current password</label><input id="pass-cur" type="password" required></div>
+        <div class="field"><label>New password (min 8)</label><input id="pass-new" type="password" required></div>
+        <button class="btn primary" type="submit">Update password</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<div class="toast" id="toast"></div>
+<script src="/js/app.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

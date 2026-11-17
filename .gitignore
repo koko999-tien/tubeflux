@@ -1,0 +1,8 @@
+node_modules/
+.env
+data/
+media/*
+!media/.gitkeep
+thumbs/*
+!thumbs/.gitkeep
+*.log
